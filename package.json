@@ -1,13 +1,15 @@
 {
-  "name": "s",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "drink_master-back",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server/start.js"
+    "start": "cross-env NODE_ENV=production node ./server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js"
   },
-  "author": "",
+  "author": "Dmytro Kozlovskyi",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
