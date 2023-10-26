@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers")
+const handleMongooseError = require("../helpers");
 const emailRegexp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 const userSchema = new Schema(
@@ -7,8 +7,8 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: [true, "Set name for user"],
-        },
-       birthDate: {
+    },
+    birthDate: {
       type: Date,
       required: [true, "BirthDate is required"],
     },
@@ -17,8 +17,8 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       match: emailRegexp,
       unique: true,
-        },
-     password: {
+    },
+    password: {
       type: String,
       required: [true, "Set password for user"],
     },
@@ -37,4 +37,4 @@ userSchema.post("save", handleMongooseError);
 
 const User = model("user", userSchema);
 
-module.exports = {User}
+module.exports = User;
