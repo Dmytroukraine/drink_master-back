@@ -109,3 +109,52 @@
     }
   }
 }
+
+
+
+// "/glass": {
+//   "get": {
+//     "tags": ["Glass"],
+//     "summary": "Get glass list",
+//     "security": [{ "Bearer": [] }],
+//     "responses": {
+//       "201": {
+//         "description": "Glass-list found",
+//         "content": {
+//           "application/json": {
+//             "schema": {
+//               "$ref": "#/components/schemas/GlassCategoriesResponse"
+//             }
+//           }
+//         }
+//       },
+//       "401": {
+//         "description": "Missing header with authorization token"
+//       }
+//     }
+//   }
+// }
+
+// "/ingredients/list": {
+//   "get": {
+//     "tags": ["Ingredients"],
+//     "summary": "Get all ingredients list",
+//     "security": [{ "Bearer": [] }],
+//     "responses": {
+//       "200": {
+//         "description": "Success! Get all ingredients list",
+//         "content": {
+//           "application/json": {
+//             "schema": {
+//               "$ref": "#/components/schemas/IngredientsListResponse"
+//             }
+//           }
+//         }
+//       },
+//       "401": {
+//         "description": "Missing header with authorization token"
+//       }
+//     }
+//   }
+// }
+// }
