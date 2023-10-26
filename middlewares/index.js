@@ -1,15 +1,16 @@
-const isEmptyBody = require("./isEmptyBody");
-const authenticate = require("./authenticate");
-const isValidId = require("./isValidId");
-const validateBody = require("./validateBody");
-const upload = require("./upload");
-const parseJson = require("./parseJson");
+
+const upload = require("./upload.js");
+const isEmailBelongsToUser = require("./isEmailBelongsToUser.js");
 
 module.exports = {
-  isEmptyBody,
-  authenticate,
-  isValidId,
-  validateBody,
   upload,
-  parseJson,
+  isEmailBelongsToUser,
 };
+
+// export { default as isEmptyBody } from "./isEmptyBody.js";
+// export { default as isValidId } from "./isValidId.js";
+// export { default as authenticate } from "./authenticate.js";
+// export { default as validateBody } from "./validateBody.js";
+
+// export { default as parseJson } from "./parseJson.js";
+

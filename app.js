@@ -19,6 +19,7 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/api/drinks", drinksRouter);
 app.use("/api/filters", filtersRouter);
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
