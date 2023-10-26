@@ -9,8 +9,8 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json", "multipart/form-data"],
   "servers": [{ "url": "http://localhost:3000" }],
   "tags": [
     {
@@ -113,8 +113,6 @@
     }
   }
 }
-
-
 
 // "/glass": {
 //   "get": {
