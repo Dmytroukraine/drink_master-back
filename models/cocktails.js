@@ -39,10 +39,23 @@ const drinkSchema = new Schema(
       required: [true, "Set instructions for the drink"],
     },
 
-    ingredients: {
-      type: Array,
-      required: [true, "Set instructions for the drink"],
-    },
+    ingredients: [
+      {
+        title: {
+          type: String,
+          required: [true, "Set name for a ingredient"],
+        },
+        measure: {
+          type: String,
+          required: [true, "Set measure"],
+        },
+
+        ingredientId: {
+          type: Schema.Types.ObjectId,
+          ref: "ingredients",
+        },
+      },
+    ],
 
     owner: {
       type: Schema.Types.ObjectId,
@@ -68,7 +81,7 @@ const drinkJoiSchema = Joi.object({
   ingredients: Joi.array().items(Joi.object({
     title: Joi.string().required,
     measure: Joi.string().required,
-    ingredientId: Joi.string().required,
+    // ingredientId: Joi.string().required,
   })),
 }).options({ abortEarly: false });
 
