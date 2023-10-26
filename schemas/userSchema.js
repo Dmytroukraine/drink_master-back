@@ -27,12 +27,9 @@ const loginSchema = Joi.object({
   }),
 }).options({ abortEarly: false });
 
-
 const schemas = {
   registerSchema,
   loginSchema,
 };
 
-module.exports = {
-  schemas,
-};
+module.exports = schemas;
