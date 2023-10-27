@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+const { Schema, model } = require("mongoose");
+const Joi = require("joi");
 
 const ingredientSchema = new Schema({
   title: {
@@ -25,4 +26,4 @@ const ingredientSchema = new Schema({
 
 const Ingredient = model("ingredient", ingredientSchema);
 
-export default Ingredient;
+module.exports = { Ingredient, ingredientSchema };

@@ -1,6 +1,6 @@
-import fs from "fs/promises";
-import path from "path";
-import { ctrlWrapper } from "../../utils/index.js";
+const fs = require("fs/promises");
+const path = require("path");
+const ctrlWrapper = require("../../utils/ctrlWrapper");
 
 const glassesPath = path.resolve("db", "glasses.json");
 
@@ -10,4 +10,4 @@ const getAllGlasses = async (req, res) => {
   res.json(parsedData);
 };
 
-export default ctrlWrapper(getAllGlasses);
+module.exports = { getAllGlasses: ctrlWrapper(getAllGlasses) };
