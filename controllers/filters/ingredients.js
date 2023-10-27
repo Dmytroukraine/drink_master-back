@@ -1,5 +1,5 @@
-import Ingredient from "../models/ingredients.js";
-import { ctrlWrapper } from "../utils/index.js";
+const { Ingredient } = require("../../models/ingredients");
+const { HttpError, ctrlWrapper } = require("../../utils");
 
 const getIngredients = async (req, res) => {
   const ingredients = await Ingredient.find().sort({ title: 1 });
@@ -10,4 +10,4 @@ const getIngredients = async (req, res) => {
   res.json(ingredients);
 };
 
-export default ctrlWrapper(getIngredients);
+module.exports = { getIngredients: ctrlWrapper(getIngredients) };
