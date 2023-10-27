@@ -29,6 +29,7 @@
     "nodemailer": "^6.9.7",
     "nodemon": "^2.0.7",
     "query-string": "^7.0.0",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "uuid": "^9.0.1"
   }
 }

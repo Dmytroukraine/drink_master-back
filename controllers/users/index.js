@@ -1,5 +1,4 @@
-const sendEmail = require("../../helpers/sendEmail");
-const { User } = require("../../models/users");
+const { sendEmail, updateUserNameAndAvatar } = require("../../helpers");
 
 const getCurrentUser = (req, res) => {
   res.status(200).json({
@@ -12,16 +11,19 @@ const subscribe = async (req, res) => {
   const { email } = req.body;
   await sendEmail(email);
   res.status(200).json({
-    message: "Email is sent",
+    message: "You have been subscribed  successfully",
   });
 };
-
-const updateUserData = async (req, res, next) => {
-  const { id } = req.params;
-  const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
-  res.status(201).json({
+const updateUserData = async (req, res) => {
+  const updatedUser = await updateUserNameAndAvatar(
+    req.user,
+    req.body.name,
+    req.file
+  );
+  console.log("upUser", updatedUser);
+  res.status(200).json({
     message: "Success",
-    user: updatedUser,
+    updatedUser,
   });
 };
 
