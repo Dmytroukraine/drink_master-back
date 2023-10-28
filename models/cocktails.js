@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const category = require('../db/categories.json')
 const glass = require('../db/glasses.json')
-const ingredients = require("../db");
+
 
 const alco = ["Alcoholic", "Non alcoholic"];
 
@@ -68,7 +68,7 @@ const drinkSchema = new Schema(
 const drinkJoiSchema = Joi.object({
   drink: Joi.string().min(2).max(30).required(),
   category: Joi.string()
-    .valid(...subscriptionTypes)
+    .valid(...category)
     .required(),
   alcoholic: Joi.string()
     .valid("Alcoholic", "Non alcoholic")
