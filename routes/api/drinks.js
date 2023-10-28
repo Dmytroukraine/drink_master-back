@@ -1,9 +1,10 @@
 const express = require("express");
+const {
+  getMainPageDrinks,
+} = require("../../controllers/drinks/getMainPageDrinks");
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
-  res.json({ message: "template message" });
-});
+router.get("/mainpage", getMainPageDrinks);
 
 module.exports = router;
