@@ -5,7 +5,6 @@ const differenceInYears = require("date-fns/differenceInYears");
 
 const addOwnDrink = ctrlWrapper(async (req, res, next) => {
     const { id: owner, birthDate } = req.user;
-    const { drink } = req.body;
 
     const currentDate = new Date();
     const age = differenceInYears(currentDate, birthDate);
