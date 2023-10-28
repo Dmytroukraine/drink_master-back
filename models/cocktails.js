@@ -12,6 +12,7 @@ const drinkSchema = new Schema(
     drink: {
       type: String,
       required: [true, "Set name for a drink"],
+      unique: [true, "Email in use"],
     },
     category: {
       type: String,
@@ -79,17 +80,18 @@ const drinkJoiSchema = Joi.object({
   shortDescription: Joi.string().min(5).max(100).required(),
   instructions: Joi.string().min(10).max(1000).required(),
   ingredients: Joi.array().items(Joi.object({
-    title: Joi.string().required,
-    measure: Joi.string().required,
+    title: Joi.string().required(),
+    measure: Joi.string().required(),
     // ingredientId: Joi.string().required,
   })),
 }).options({ abortEarly: false });
+
 
 drinkSchema.post("save", (error, data, next) => {
   error.status = 400;
   next();
 });
 
-const Drink = model("recipes", drinkSchema);
+const Drink = model("recipe", drinkSchema);
 
 module.exports = { Drink, drinkJoiSchema };
