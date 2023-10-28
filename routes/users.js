@@ -4,10 +4,20 @@ const mdlw = require("../middlewares");
 
 const router = express.Router();
 
-router.get("/current", ctrl.getCurrentUser);
+router.get("/current", mdlw.authenticate, ctrl.getCurrentUser);
 
-router.post("/subscribe", mdlw.isEmailBelongsToUser, ctrl.subscribe);
+router.post(
+  "/subscribe",
+  mdlw.authenticate,
+  mdlw.isEmailBelongsToUser,
+  ctrl.subscribe
+);
 
-router.patch("/update", ctrl.updateUserData);
+router.patch(
+  "/update",
+  mdlw.authenticate,
+  mdlw.upload.single("avatar"),
+  ctrl.updateUserData
+);
 
 module.exports = router;

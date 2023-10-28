@@ -1,29 +1,38 @@
-const path = require("path");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
+const uuid = require("uuid").v4;
 
-const HttpError = require("../utils/HttpError");
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
 
-const tempDir = path.join(__dirname, "../", "temp");
-console.log(tempDir);
-
-const multerConfig = multer.diskStorage({
-  destination: tempDir,
-  filename: (req, file, cbk) => {
-    cbk(null, file.originalname);
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: async (req, file) => {
+    const avatarName = `${uuid()}-${file.originalname}`;
+    let folder;
+    if (file.fieldname === "avatar") {
+      folder = "avatars";
+    } else if (file.fieldname === "cocktail") {
+      folder = "cocktails";
+    } else {
+      folder = "others";
+    }
+    return {
+      folder: folder,
+      allowed_formats: ["jpg", "png"],
+      public_id: avatarName,
+      transformation: [
+        { width: 350, height: 350 },
+        { width: 700, height: 700 },
+      ],
+    };
   },
 });
 
-const multerFilter = (req, file, cbk) => {
-  if (file.mimetype.startsWith("image/")) {
-    cbk(null, true);
-  } else {
-    cbk(HttpError(400, "Wrong file type! Only image file!"), false);
-  }
-};
-
-const upload = multer({
-  storage: multerConfig,
-  fileFilter: multerFilter,
-});
+const upload = multer({ storage });
 
 module.exports = upload;
