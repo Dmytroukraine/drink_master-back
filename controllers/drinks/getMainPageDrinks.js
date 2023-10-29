@@ -3,11 +3,10 @@ const fs = require("fs/promises");
 const path = require("path");
 const differenceInYears = require("date-fns/differenceInYears");
 const { Drink } = require("../../models/cocktails");
-// const { Ingredient } = require("../../models/ingredients");
 
 const drinkPath = path.resolve("db", "categories.json");
 
-const getMainPageDrinks = async (req, res) => {
+const getMainPageDrinks = ctrlWrapper(async (req, res) => {
   const { birthDate } = req.user;
   const currentDate = new Date();
   const age = differenceInYears(currentDate, birthDate);
@@ -30,8 +29,6 @@ const getMainPageDrinks = async (req, res) => {
   }
 
   res.json(drinks);
-};
+});
 
-module.exports = {
-  getMainPageDrinks: ctrlWrapper(getMainPageDrinks),
-};
+module.exports = getMainPageDrinks;
