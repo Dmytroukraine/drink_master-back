@@ -4,7 +4,8 @@ const {
   getDrinkById,
   addOwnDrink,
   removeOwnDrink,
-  getOwnDrinks
+  getOwnDrinks,
+  addFavorite,
 } = require("../../controllers/drinks");
 
 
@@ -21,9 +22,8 @@ const router = express.Router();
 router.get("/own", authenticate, getOwnDrinks);
 
 router.get("/mainpage", getMainPageDrinks);
+
 router.get("/:drinkId", getDrinkById);
-
-
 
 router.post(
   "/own/add",
@@ -32,12 +32,17 @@ router.post(
   addOwnDrink
 );
 
-
 router.delete(
   "/own/remove/:drinkId",
   authenticate,
   isValidDrinkId,
   removeOwnDrink
+);
+
+router.post("/favorite/add/:drinkId",
+  authenticate,
+  isValidDrinkId,
+  addFavorite
 );
 
 module.exports = router;
