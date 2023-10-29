@@ -6,6 +6,7 @@ const {
   removeOwnDrink,
   getOwnDrinks,
   addFavorite,
+  removeFavorite,
 } = require("../../controllers/drinks");
 
 
@@ -43,6 +44,13 @@ router.post("/favorite/add/:drinkId",
   authenticate,
   isValidDrinkId,
   addFavorite
+);
+
+router.delete(
+  "/favorite/remove/:drinkId",
+  authenticate,
+  isValidDrinkId,
+  removeFavorite
 );
 
 module.exports = router;
