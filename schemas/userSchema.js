@@ -27,9 +27,16 @@ const loginSchema = Joi.object({
   }),
 }).options({ abortEarly: false });
 
+const emailSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required().messages({
+    "any.required": "missing required email field",
+  }),
+});
+
 const schemas = {
   registerSchema,
   loginSchema,
+  emailSchema,
 };
 
 module.exports = schemas;

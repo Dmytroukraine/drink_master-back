@@ -12,7 +12,8 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
-    const avatarName = `${uuid()}-${file.originalname}`;
+    const [name, extention] = file.originalname.split(".");
+    const avatarName = `${uuid()}-${name}`;
     let folder;
     if (file.fieldname === "avatar") {
       folder = "avatars";
@@ -33,6 +34,11 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+});
 
 module.exports = upload;
