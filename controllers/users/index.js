@@ -20,10 +20,10 @@ const updateUserData = async (req, res) => {
     req.body.name,
     req.file
   );
-  console.log("upUser", updatedUser);
   res.status(200).json({
     message: "Success",
-    updatedUser,
+    name: updatedUser.name,
+    avatarURL: updatedUser.avatarURL,
   });
 };
 

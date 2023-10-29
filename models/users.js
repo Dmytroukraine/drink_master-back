@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers");
+// const { handleMongooseError } = require("../helpers");
 const emailRegexp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 const userSchema = new Schema(
@@ -34,7 +34,10 @@ const userSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-// userSchema.post("save", handleMongooseError);
+userSchema.post("save", (error, data, next) => {
+  error.status = 400;
+  next();
+});
 
 const User = model("user", userSchema);
 
