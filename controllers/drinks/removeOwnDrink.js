@@ -1,5 +1,4 @@
 const { Drink } = require("../../models/cocktails");
-const { findByIdAndRemove } = require("../../models/users");
 const { ctrlWrapper, HttpError } = require("../../utils");
 
 const removeOwnDrink = ctrlWrapper(

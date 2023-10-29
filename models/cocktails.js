@@ -2,7 +2,8 @@ const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
 const category = require('../db/categories.json')
-const glass = require('../db/glasses.json')
+const glass = require('../db/glasses.json');
+const { handleMongooseError } = require("../helpers");
 
 
 const alco = ["Alcoholic", "Non alcoholic"];
@@ -86,9 +87,17 @@ const drinkJoiSchema = Joi.object({
   })),
 }).options({ abortEarly: false });
 
-
 drinkSchema.post("save", (error, data, next) => {
-  error.status = 400;
+  const { name, code } = error;
+  const status =
+    name === "MongoServerError" && code === 11000
+      ? 409
+      : 400;
+  if (name === "MongoServerError" && code === 11000) {
+    error.message = "Drink already exists ";
+  }
+  error.status = status;
+
   next();
 });
 
