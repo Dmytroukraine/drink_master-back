@@ -4,10 +4,12 @@ const {
 } = require("../../controllers/drinks/getMainPageDrinks");
 
 const addOwnDrink = require("../../controllers/drinks/addOwnDrink");
+const removeOwnDrink = require("../../controllers/drinks/removeOwnDrink");
 
 const {
   validateBody,
   authenticate,
+  isValidDrinkId,
 } = require("../../middlewares");
 
 const {
@@ -24,5 +26,12 @@ router.post(
   validateBody(drinkJoiSchema),
   addOwnDrink
 );
+
+    router.delete(
+      "/own/remove/:drinkId",
+      authenticate,
+      isValidDrinkId,
+      removeOwnDrink
+    );
 
 module.exports = router;
