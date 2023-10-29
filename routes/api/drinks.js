@@ -15,7 +15,7 @@ const { drinkJoiSchema } = require("../../models/cocktails");
 const router = express.Router();
 
 router.get("/mainpage", getMainPageDrinks);
-router.get("/:id", getDrinkById);
+router.get("/:drinkId", getDrinkById);
 
 router.post(
   "/own/add",
