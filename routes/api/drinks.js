@@ -7,8 +7,8 @@ const {
   getOwnDrinks,
   addFavorite,
   removeFavorite,
+  getByKeyWord,
 } = require("../../controllers/drinks");
-
 
 const {
   validateBody,
@@ -23,7 +23,7 @@ const router = express.Router();
 router.get("/own", authenticate, getOwnDrinks);
 
 router.get("/mainpage", getMainPageDrinks);
-
+router.get("/search", getByKeyWord);
 router.get("/:drinkId", getDrinkById);
 
 router.post(
@@ -40,7 +40,8 @@ router.delete(
   removeOwnDrink
 );
 
-router.post("/favorite/add/:drinkId",
+router.post(
+  "/favorite/add/:drinkId",
   authenticate,
   isValidDrinkId,
   addFavorite
