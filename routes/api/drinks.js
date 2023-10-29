@@ -1,8 +1,12 @@
 const express = require("express");
-const { getMainPageDrinks, getDrinkById } = require("../../controllers/drinks");
+const {
+  getMainPageDrinks,
+  getDrinkById,
+  addOwnDrink,
+  removeOwnDrink,
+  getOwnDrinks
+} = require("../../controllers/drinks");
 
-const addOwnDrink = require("../../controllers/drinks/addOwnDrink");
-const removeOwnDrink = require("../../controllers/drinks/removeOwnDrink");
 
 const {
   validateBody,
@@ -14,8 +18,12 @@ const { drinkJoiSchema } = require("../../models/cocktails");
 
 const router = express.Router();
 
+router.get("/own", authenticate, getOwnDrinks);
+
 router.get("/mainpage", getMainPageDrinks);
 router.get("/:drinkId", getDrinkById);
+
+
 
 router.post(
   "/own/add",
@@ -23,6 +31,7 @@ router.post(
   validateBody(drinkJoiSchema),
   addOwnDrink
 );
+
 
 router.delete(
   "/own/remove/:drinkId",
