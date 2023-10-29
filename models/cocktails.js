@@ -41,6 +41,11 @@ const drinkSchema = new Schema(
       required: [true, "Set instructions for the drink"],
     },
 
+    drinkThumb: {
+      type: String,
+      default: "",
+    },
+
     ingredients: [
       {
         title: {
@@ -51,7 +56,6 @@ const drinkSchema = new Schema(
           type: String,
           required: [true, "Set measure"],
         },
-
         ingredientId: {
           type: Schema.Types.ObjectId,
           ref: "ingredients",
@@ -63,6 +67,13 @@ const drinkSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
     },
+
+    users: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    ],
   },
   { versionKey: false }
 );
@@ -80,11 +91,13 @@ const drinkJoiSchema = Joi.object({
     .required(),
   shortDescription: Joi.string().min(5).max(100).required(),
   instructions: Joi.string().min(10).max(1000).required(),
+  drinkThumb: Joi.string(),
   ingredients: Joi.array().items(Joi.object({
     title: Joi.string().required(),
     measure: Joi.string().required(),
-    // ingredientId: Joi.string().required,
   })),
+users: Joi.array().items(Joi.object()),
+
 }).options({ abortEarly: false });
 
 drinkSchema.post("save", (error, data, next) => {
