@@ -1,11 +1,10 @@
 const express = require("express");
-const {
-  getMainPageDrinks,
-  addOwnDrink,
-  getDrinkById,
-} = require("../../controllers/drinks");
+const { getMainPageDrinks, getDrinkById } = require("../../controllers/drinks");
+
+const addOwnDrink = require("../../controllers/drinks/addOwnDrink");
 
 const { validateBody, authenticate } = require("../../middlewares");
+
 const { drinkJoiSchema } = require("../../models/cocktails");
 
 const router = express.Router();
