@@ -3,7 +3,8 @@ const getMainPageDrinks = require("./getMainPageDrinks");
 const addOwnDrink = require("./addOwnDrink");
 const getOwnDrinks = require("./getOwnDrinks");
 const removeOwnDrink = require("./removeOwnDrink");
-const addFavorite = require("./addFavorite")
+const addFavorite = require("./addFavorite");
+const searchDrinks = require("./searchDrinks");
 
 module.exports = {
   getDrinkById,
@@ -12,4 +13,5 @@ module.exports = {
   getOwnDrinks,
   removeOwnDrink,
   addFavorite,
+  searchDrinks,
 };
