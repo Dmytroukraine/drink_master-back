@@ -4,7 +4,7 @@ const { ctrlWrapper, HttpError } = require("../../utils");
 const getOwnDrinks = ctrlWrapper(async (req, res, next) => {
   const { id: owner } = req.user;
 
-  const result = await Drink.find({ owner });
+  const result = await Drink.find({ owner },{users: 0});
 
   if (!result.length) {
     throw HttpError(404, "Not found");
