@@ -31,7 +31,7 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
   });
 
   if (!total) {
-    throw HttpError(404, "Not Found");
+    throw HttpError(404, "No results found");
   }
 
   res.json({ total, drinks });
