@@ -18,7 +18,7 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
     queryConfig.ingredients = { $elemMatch: { title: ingredient } };
   }
   if (query) {
-    queryConfig.drink = { $regex: query, $options: "i" };
+    queryConfig.shortDescription = { $regex: query, $options: "i" };
   }
   // if (age < 18) {
   //   queryConfig.alcoholic = "Non alcoholic";
