@@ -6,7 +6,8 @@ const removeOwnDrink = require("./removeOwnDrink");
 const addFavorite = require("./addFavorite");
 const removeFavorite = require("./removeFavorite");
 const getByKeyWord = require("./getByKeyWord");
-const getFavorite = require("./getFavorite")
+const getFavorite = require("./getFavorite");
+const getPopular = require("./getPopular");
 
 module.exports = {
   getDrinkById,
@@ -18,4 +19,5 @@ module.exports = {
   removeFavorite,
   getByKeyWord,
   getFavorite,
+  getPopular,
 };

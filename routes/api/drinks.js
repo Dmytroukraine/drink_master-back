@@ -8,7 +8,8 @@ const {
   addFavorite,
   removeFavorite,
   getByKeyWord,
-  getFavorite
+  getFavorite,
+  getPopular
 } = require("../../controllers/drinks");
 
 const {
@@ -24,7 +25,7 @@ const router = express.Router();
 
 
 router.get("/own", authenticate, getOwnDrinks);
-
+router.get("/popular", getPopular);
 router.get("/mainpage", getMainPageDrinks);
 router.get("/search", getByKeyWord);
 router.get("/favorite", authenticate, getFavorite);
