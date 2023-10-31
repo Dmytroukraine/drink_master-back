@@ -18,7 +18,7 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
     queryConfig.ingredients = { $elemMatch: { title: ingredient } };
   }
   if (query) {
-    queryConfig.drink = { $regex: query, $options: "i" };
+    queryConfig.shortDescription = { $regex: query, $options: "i" };
   }
   // if (age < 18) {
   //   queryConfig.alcoholic = "Non alcoholic";
@@ -31,7 +31,7 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
   });
 
   if (!total) {
-    throw HttpError(404, "Not Found");
+    throw HttpError(404, "No results found");
   }
 
   res.json({ total, drinks });
