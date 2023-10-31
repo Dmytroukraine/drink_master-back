@@ -4,7 +4,7 @@ const { ctrlWrapper, HttpError } = require("../../utils");
 const getPopular = ctrlWrapper(async (req, res, next) => {
   const result = await Drink.aggregate([
     { $sort: { users: -1 } },
-    { $limit: 5 },
+    { $limit: 3 },
   ]);
 
   if (!result) {
