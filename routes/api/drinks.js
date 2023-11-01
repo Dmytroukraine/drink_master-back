@@ -25,7 +25,7 @@ const router = express.Router();
 
 
 router.get("/own", authenticate, getOwnDrinks);
-router.get("/popular", getPopular);
+router.get("/popular", authenticate, getPopular);
 router.get("/mainpage", getMainPageDrinks);
 router.get("/search", getByKeyWord);
 router.get("/favorite", authenticate, getFavorite);
