@@ -319,7 +319,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             }
           }
         }
@@ -341,7 +341,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -419,7 +419,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -427,7 +427,7 @@
           }
         }
       },
-      "/api/drinks/{id}": {
+      "/api/drinks/{drinkId}": {
         "get": {
           "tags": ["Drinks"],
           "summary": "Get drink by id",
@@ -457,7 +457,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -493,7 +493,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -501,7 +501,7 @@
           }
         }
       },
-      "/api/drinks/own/remove/{id}": {
+      "/api/drinks/own/remove/{drinkId}": {
         "delete": {
           "tags": ["Drinks"],
           "summary": "Delete user's drink",
@@ -527,7 +527,7 @@
           }
         }
       },
-      "/api/drinks/own/all": {
+      "/api/drinks/own": {
         "get": {
           "tags": ["Drinks"],
           "summary": "Get user's drinks",
@@ -556,12 +556,12 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             }
           }
         }
       },
-      "/api/drinks/favorite/add/{id}": {
+      "/api/drinks/favorite/add/{drinkId}": {
         "post": {
           "tags": ["Drinks"],
           "summary": "Add drink to user favorites",
@@ -591,7 +591,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -599,7 +599,7 @@
           }
         }
       },
-      "/api/drinks/favorite/remove/{id}": {
+      "/api/drinks/favorite/remove/{drinkId}": {
         "delete": {
           "tags": ["Drinks"],
           "summary": "Remove drink from user favorites",
@@ -629,7 +629,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -637,7 +637,7 @@
           }
         }
       },
-      "/api/drinks/favorite/all": {
+      "/api/drinks/favorite": {
         "get": {
           "tags": ["Drinks"],
           "summary": "Get drinks from user favorites",
@@ -666,7 +666,7 @@
               }
             },
             "401": {
-              "description": "Unauthorized"
+              "description": "Not authorized"
             },
             "404": {
               "description": "Not found"
@@ -916,37 +916,33 @@
                 "type": "string",
                 "format": "uri",
                 "description": "URL to ingredient small image"
-              },
-              "abv": {
-                "type": "string",
-                "description": "Ingredient's abv"
               }
             }
           },
           "example": [
             {
-              "_id": "64aebb7f82d96cc69e0eb4fb",
-              "title": "Absolut Citron",
-              "ingredientThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695487694/ingredients/Absolut20Citron.png",
-              "thumb-medium": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695487694/ingredients/Absolut20Citron-Medium.png",
-              "thumb-small": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695487694/ingredients/Absolut20Citron-Small.png",
-              "abv": "40",
-              "alcohol": "Yes",
-              "description": "Absolut Vodka is a brand of vodka, produced near Åhus, in southern Sweden. Absolut is owned by French group Pernod Ricard; they bought Absolut for €5.63 billion in 2008 from the Swedish state. Absolut is the third largest brand of alcoholic spirits in the world after Bacardi and Smirnoff, and is sold in 126 countries.\r\n\r\nAbsolut was established in 1879 by Lars Olsson Smith and is produced in Åhus, Sweden.[1] Smith challenged the city of Stockholm's liquor marketing monopoly with his vodka. It was sold at a lower price than the monopoly's product, just outside the city border. Smith even offered free boat rides to the distillery and \"Rent Brännvin\" made Smith a fortune.\r\n\r\nIn 1917, the alcohol industry in Sweden was monopolized by the Swedish government. Vodka was then sold nationwide under the name \"Absolut Rent Brännvin\". The name changed with intervals, Renat Brännvin or Absolut Rent Brännvin. In 1979, the old name Absolut was picked up when the upper-price range ABSOLUT VODKA was introduced. Renat is still a euphemism for spirits in Sweden, and the name of another vodka product by Vin & Sprit.\r\n\r\n\r\nAbsolut Vodka was introduced to the global market in 1979. Since its launch, Absolut has grown from 90,000 liters to 96.6 million liters in 2008. It has become the largest international spirit and is available in 126 countries. The vodka is made from winter wheat. Approximately 80,000 metric tons (2,900,000 bushels) of wheat are used annually to produce Absolut Vodka. Over one kilogram of grain is used in every one-liter bottle.",
-              "type": "Vodka",
-              "flavour": "International spirit",
-              "country": "Sweden",
+              "_id": "64aebb7f82d96cc69e0eb4b4",
+              "title": "Tea",
+              "ingredientThumb": "https://ftp.goit.study/img/drinkify/ingredients/Tea.png",
+              "thumb-medium": "https://ftp.goit.study/img/drinkify/ingredients/Tea-Medium.png",
+              "thumb-small": "https://ftp.goit.study/img/drinkify/ingredients/Tea-Small.png",
+              "abv": "0",
+              "alcohol": "No",
+              "description": "Tea is a popular aromatic beverage made by steeping the dried leaves of the Camellia sinensis plant in hot water. It's one of the most widely consumed beverages in the world, known for its diverse flavours and potential health benefits.",
+              "type": "Tea",
+              "flavour": "tea",
+              "country": "India",
               "updatedAt": "2023-09-23T21:09:05.491Z"
             },
             {
-              "_id": "64aebb7f82d96cc69e0eb504",
-              "title": "7-Up",
-              "ingredientThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695487694/ingredients/7-Up.png",
-              "thumb-medium": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695487694/ingredients/7-Up-Medium.png",
-              "thumb-small": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695487694/ingredients/7-Up-Small.png",
+              "_id": "64aebb7f82d96cc69e0eb4ad",
+              "title": "Southern Comfort",
+              "ingredientThumb": "https://ftp.goit.study/img/drinkify/ingredients/Southern_Comfort.png",
+              "thumb-medium": "https://ftp.goit.study/img/drinkify/ingredients/Southern_Comfort-Medium.png",
+              "thumb-small": "https://ftp.goit.study/img/drinkify/ingredients/Southern_Comfort-Small.png",
               "abv": "0",
-              "alcohol": "No",
-              "description": "7 Up (stylized as 7up outside of the U.S.) is a brand of lemon-lime flavoured, non-caffeinated soft drink. The rights to the brand are held by Dr Pepper Snapple Group in the United States, and PepsiCo (or its licensees) in the rest of the world. The U.S. version of the 7 Up logo includes a red cherry between the \"7\" and \"Up\"; this red cherry has been animated and used as a mascot for the brand as Cool Spot.\r\n\r\n7 Up was created by Charles Leiper Grigg, who launched his St. Louis–based company The Howdy Corporation in 1920.[1] Grigg came up with the formula for a lemon-lime soft drink in 1929. The product, originally named \"Bib-Label Lithiated Lemon-Lime Soda\", was launched two weeks before the Wall Street Crash of 1929.[2] It contained lithium citrate, a mood-stabilizing drug, until 1950.[3] It was one of a number of patent medicine products popular in the late-19th and early-20th centuries. Its name was later shortened to \"7 Up Lithiated Lemon Soda\" before being further shortened to just \"7 Up\" by 1936.\r\n\r\nWestinghouse bought 7 Up in 1969 and sold it in 1978 to Philip Morris, who then in 1986 sold it to a group led by the investment firm Hicks & Haas.[4] 7 Up merged with Dr Pepper in 1988; Cadbury Schweppes bought the combined company in 1995. The Dr Pepper Snapple Group was spun off from Cadbury Schweppes in 2008.\r\n\r\n7 Up has been reformulated several times since its launch in 1929. In 2006, the version of the product sold in the U.S. was re-formulated so that it could be marketed as being \"100 natural\". This was achieved by eliminating the chelating-agent calcium disodium EDTA, and replacing sodium citrate with potassium citrate in order to reduce the beverage's sodium content.[5] This re-formulation contains no fruit juice and, in the U.S., is sweetened with high-fructose corn syrup (HFCS). The manufacturing process used in the production of HFCS has led some public health and advocacy groups to challenge the ad campaign's \"natural\" claims.[6] In 2007, after the Center for Science in the Public Interest threatened to sue 7 Up, it was announced that 7 Up would stop being marketed as \"100 natural\". Instead, it is now promoted as having \"100 Natural flavours\". The controversy does not extend to other countries, such as the United Kingdom, where HFCS is not generally used in foods, including 7 Up. In 2011, 7 Up began test-marketing a formula, called 7 Up Retro, using sugar rather than HFCS. Container labels sport the caption, \"Made With Real Sugar\".\r\n\r\nThere exists a myth that the 7 Up name comes from the drink having a pH over 7. That would make it neutral or basic on the scale; however, this is not the case, as the 7 Up pH is close to 3.79, similar to other drinks of the type.[7] The real origin of the name is unclear,[8] though Britvic claims that the name comes from the seven main ingredients in the drink,[9] while others have claimed that the number was a coded reference to the lithium contained in the original recipe, which has an atomic mass of approximately 7.",
+              "alcohol": "Yes",
+              "description": "Southern Comfort (often abbreviated SoCo) is an American liqueur made from neutral spirits with fruit, spice and whiskey flavouring. The brand was originally created by bartender Martin Wilkes Heron in New Orleans in 1874. Since March 1, 2016 the brand has been owned by the Sazerac Company after being sold by the Brown-Forman Group. Sazerac has announced that Southern Comfort's formula will be changed in 2017 to include whiskey as an ingredient, as it was until some time before the brand was sold to Brown-Forman in 1979.",
               "type": "Soft Drink",
               "flavour": "sugar",
               "country": "United States",
@@ -1065,19 +1061,19 @@
           "example": {
             "Ordinary Drink": [
               {
-                "_id": "639b6de9ff77d221f190c50f",
-                "drink": "Quentin",
+                "_id": "639b6de9ff77d221f190c570",
+                "drink": "Dragonfly",
                 "drinkAlternate": "Sorry, not specified",
-                "tags": "IBA,ContemporaryClassic",
-                "video": "https://www.youtube.com/watch?v=2jtoa_t7g94",
+                "tags": "Sorry, not specified",
+                "video": "Sorry, not specified",
                 "category": "Ordinary Drink",
                 "IBA": "Contemporary Classics",
                 "alcoholic": "Alcoholic",
-                "glass": "Cocktail glass",
-                "description": "Quentin is a refreshing cocktail that combines the flavors of citrus and mint. It is made with fresh lime juice, orange liqueur, and a touch of mint syrup. The drink is served over ice and garnished with a sprig of mint. It is the perfect beverage for a hot summer day.",
-                "instructions": "In a shaker half-filled with ice cubes, combine the rum, Kahlua, and cream. Shake well. Strain into a cocktail glass and garnish with the nutmeg.",
-                "instructionsES": "En una coctelera llena hasta la mitad con cubitos de hielo, combine el ron, Kahlua y la crema. Agite bien. Colar en una copa de cóctel y decorar con la nuez moscada.",
-                "instructionsDE": "In einem Shaker, der halb mit Eiswürfeln gefüllt ist, Rum, Kahlua und Sahne mischen. Gut schütteln. In ein Cocktailglas abseihen und mit der Muskatnuss garnieren.",
+                "glass": "Highball glass",
+                "description": "Dragonfly is a vibrant and citrusy cocktail that combines the flavors of vodka, orange liqueur, cranberry juice, and lime juice. It is made by shaking all the ingredients together with ice and straining it into a glass. The result is a refreshing and tangy drink with a beautiful pink color. Sip on this delightful cocktail and let your taste buds take flight.",
+                "instructions": "In a highball glass almost filled with ice cubes, combine the gin and ginger ale. Stir well. Garnish with the lime wedge.",
+                "instructionsES": "En un vaso alto casi lleno de cubitos de hielo, combine la ginebra y el ginger ale. Revuelva bien. Adorne con la rodaja de lima.",
+                "instructionsDE": "In einem Highball-Glas, das fast mit Eiswürfeln gefüllt ist, den Gin mit dem Ginger Ale vermengen. Gut umrühren. Mit dem Limettenkeil garnieren.",
                 "instructionsFR": "Dans un shaker à moitié rempli de glaçons, mélanger le rhum, le Kahlua et la crème. Bien agiter. Versez dans un verre à cocktail et décorez avec la noix de muscade.",
                 "instructionsIT": "In uno shaker riempito a metà con cubetti di ghiaccio, unire il rum, il Kahlua e la panna. Filtrare in una coppetta da cocktail e guarnire con la noce moscata. Agitare bene.",
                 "instructionsRU": "В шейкере, наполовину наполненном кубиками льда, смешайте ром, Калуа и сливки. Хорошо встряхнуть. Процедите в коктейльный бокал и украсьте мускатным орехом.",
@@ -1230,7 +1226,7 @@
               "instructionsRU": "Смешайте все ингредиенты миксером для коктейлей и подавайте с колотым льдом с мятой и пищевой мукой, если таковая имеется.",
               "instructionsPL": "Wymieszaj wszystkie składniki za pomocą mieszadła do koktajli i podawaj z kruszonym lodem z miętą i mąką jadalną, jeśli jest dostępna.",
               "instructionsUK": "Змішайте всі інгредієнти мішалкою для коктейлів і подавайте з колотим льодом з м'ятою і харчовим борошном, якщо є.",
-              "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695485912/drinks/Pure_Passion.jpg",
+              "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Pure_Passion.jpg",
               "ingredients": [
                 {
                   "title": "Rum",
@@ -1427,7 +1423,7 @@
                 "instructionsRU": "В шейкере, наполовину наполненном кубиками льда, смешайте ром, Калуа и сливки. Хорошо встряхнуть. Процедите в коктейльный бокал и украсьте мускатным орехом.",
                 "instructionsPL": "W shakerze wypełnionym do połowy kostkami lodu wymieszać rum, Kahlua i śmietanę. Dobrze wstrząsnąć. Przelej do kieliszka koktajlowego i udekoruj gałką muszkatołową.",
                 "instructionsUK": "У шейкері, наповненому наполовину кубиками льоду, змішайте ром, Калуа та вершки. Добре струсити. Процідіть у келих для коктейлю та прикрасьте мускатним горіхом.",
-                "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695485912/drinks/Quentin.jpg",
+                "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Quentin.jpg",
                 "ingredients": [
                   {
                     "_id": "65119ebd93a295a9f657474a",
@@ -1602,7 +1598,7 @@
             "instructionsRU": "В шейкере, наполовину наполненном кубиками льда, смешайте ром, Калуа и сливки. Хорошо встряхнуть. Процедите в коктейльный бокал и украсьте мускатным орехом.",
             "instructionsPL": "W shakerze wypełnionym do połowy kostkami lodu wymieszać rum, Kahlua i śmietanę. Dobrze wstrząsnąć. Przelej do kieliszka koktajlowego i udekoruj gałką muszkatołową.",
             "instructionsUK": "У шейкері, наповненому наполовину кубиками льоду, змішайте ром, Калуа та вершки. Добре струсити. Процідіть у келих для коктейлю та прикрасьте мускатним горіхом.",
-            "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695485912/drinks/Quentin.jpg",
+            "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Quentin.jpg",
             "ingredients": [
               {
                 "_id": "6511a3c00ca71abd32446f2e",
@@ -1830,7 +1826,7 @@
             "alcoholic": "Non alcoholic",
             "glass": "Cocktail glass",
             "description": "Quentin is a refreshing cocktail that combines the flavors of citrus and mint. It is made with fresh lime juice, orange liqueur, and a touch of mint syrup. The drink is served over ice and garnished with a sprig of mint. It is the perfect beverage for a hot summer day.",
-            "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695656397/drinks/bwvbovoe4el5vu841nml.jpg",
+            "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Pure_Passion.jpg",
             "ingredients": [
               {
                 "title": "Light rum",
@@ -1953,7 +1949,7 @@
                 "alcoholic": "Non alcoholic",
                 "glass": "Cocktail glass",
                 "description": "Quentin is a refreshing cocktail that combines the flavors of citrus and mint. It is made with fresh lime juice, orange liqueur, and a touch of mint syrup. The drink is served over ice and garnished with a sprig of mint. It is the perfect beverage for a hot summer day.",
-                "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695664472/drinks/hpujmxgvmugh0ddtpqjc.jpg",
+                "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Pure_Passion.jpg",
                 "ingredients": [
                   {
                     "title": "Light rum",
@@ -2101,7 +2097,7 @@
               "instructionsRU": "Поместите все ингредиенты в чашу блендера, накройте крышкой и взбивайте на средней скорости, пока они хорошо не перемешаются. Налейте в один высокий, 2 средних или 3 маленьких стакана и выпейте.",
               "instructionsPL": "Umieść wszystkie składniki w dzbanku blendera - przykryj i ubijaj na średnich obrotach, aż dobrze się połączą. Wlej jedną dużą, 2 średnie lub 3 małe szklanki i wypij.",
               "instructionsUK": "Помістіть усі інгредієнти в ємність блендера, накрийте кришкою та збийте на середній швидкості, поки добре не змішаються. Налийте в одну високу, 2 середні або 3 маленькі склянки і випийте.",
-              "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695485912/drinks/Just_a_Moonmint.jpg",
+              "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Pure_Passion.jpg",
               "ingredients": [
                 {
                   "_id": "6515f3d1cd6fc26dee6bddf0",
@@ -2235,7 +2231,7 @@
                 "alcoholic": "Non alcoholic",
                 "glass": "Cocktail glass",
                 "description": "Quentin is a refreshing cocktail that combines the flavors of citrus and mint. It is made with fresh lime juice, orange liqueur, and a touch of mint syrup. The drink is served over ice and garnished with a sprig of mint. It is the perfect beverage for a hot summer day.",
-                "drinkThumb": "https://res.cloudinary.com/dhgao4rhl/image/upload/v1695664472/drinks/hpujmxgvmugh0ddtpqjc.jpg",
+                "drinkThumb": "https://ftp.goit.study/img/drinkify/recipes/Pure_Passion.jpg",
                 "ingredients": [
                   {
                     "title": "Light rum",
