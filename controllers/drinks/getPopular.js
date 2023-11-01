@@ -9,30 +9,46 @@ const getPopular = ctrlWrapper(async (req, res, next) => {
   const age = differenceInYears(currentDate, birthDate);
 
   if (age < 18) {
-
-
     const result = await Drink.aggregate([
+      {
+        $match: {
+          users: { $exists: true },
+          alcoholic: "Non alcoholic",
+        },
+      },
+      {
+        $project: {
+          drink: 1,
+          shortDescription: 1,
+          drinkThumb: 1,
+          users: { $size: "$users" },
+        },
+      },
+      { $sort: { users: -1 } },
+      { $limit: 4 },
+    ]);
 
-        { $match: { users: { $exists: true }, alcoholic: "Non alcoholic" } },
-        { $sort: { users: -1 } },
-        { $limit: 4 },
-      ]);
-     res.status(200).json(result);
-  };
+    return res.status(200).json(result);
+  }
 
   const result = await Drink.aggregate([
+    {
+      $match: {
+        users: { $exists: true },
+      },
+    },
+    {
+      $project: {
+        drink: 1,
+        shortDescription: 1,
+        drinkThumb: 1,
+        users: { $size: "$users" },
+      },
+    },
     { $sort: { users: -1 } },
     { $limit: 4 },
   ]);
-
-  if (!result) {
-    throw HttpError(404, "Not found");
-  }
   res.status(200).json(result);
 });
 
 module.exports = getPopular;
-
-
-
-
