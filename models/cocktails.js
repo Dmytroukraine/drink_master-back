@@ -8,6 +8,24 @@ const { handleMongooseError } = require("../helpers");
 
 const alco = ["Alcoholic", "Non alcoholic"];
 
+const ingredientSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Set name for a ingredient"],
+    },
+    measure: {
+      type: String,
+      required: [true, "Set measure"],
+    },
+    ingredientId: {
+      type: Schema.Types.ObjectId,
+      ref: "ingredients",
+    },
+  },
+  { _id: false }
+);
+
 const drinkSchema = new Schema(
   {
     drink: {
@@ -47,20 +65,21 @@ const drinkSchema = new Schema(
     },
 
     ingredients: [
-      {
-        title: {
-          type: String,
-          required: [true, "Set name for a ingredient"],
-        },
-        measure: {
-          type: String,
-          required: [true, "Set measure"],
-        },
-        ingredientId: {
-          type: Schema.Types.ObjectId,
-          ref: "ingredients",
-        },
-      },
+      ingredientSchema
+      // {
+      //   title: {
+      //     type: String,
+      //     required: [true, "Set name for a ingredient"],
+      //   },
+      //   measure: {
+      //     type: String,
+      //     required: [true, "Set measure"],
+      //   },
+      //   ingredientId: {
+      //     type: Schema.Types.ObjectId,
+      //     ref: "ingredients",
+      //   },
+      // }
     ],
 
     owner: {
@@ -92,12 +111,14 @@ const drinkJoiSchema = Joi.object({
   shortDescription: Joi.string().min(5).max(100).required(),
   instructions: Joi.string().min(10).max(1000).required(),
   drinkThumb: Joi.string(),
-  ingredients: Joi.array().items(Joi.object({
-    title: Joi.string().required(),
-    measure: Joi.string().required(),
-  })),
-users: Joi.array().items(Joi.object()),
-
+  ingredients: Joi.array().items(
+    Joi.object({
+      title: Joi.string().required(),
+      measure: Joi.string().required(),
+      ingredientId: Joi.string().required(),
+    })
+  ),
+  users: Joi.array().items(Joi.object()),
 }).options({ abortEarly: false });
 
 drinkSchema.post("save", (error, data, next) => {
