@@ -11,13 +11,26 @@ const addOwnDrink = ctrlWrapper(async (req, res, next) => {
 
     if (age < 18) {
         throw HttpError(403, "Age is less than 18 years");
-}
-  const result = await Drink.create({
-    ...req.body,
-    owner,
-  });
-  res.status(201).json(result);
+  }
+
+  if (
+    req.file){
+    const result = await Drink.create({
+      ...req.body,
+      drinkThumb: req.file.path,
+      owner,
+    });
+    return res.status(201).json(result);
+  }
+
+    const result = await Drink.create({
+      ...req.body,
+      owner,
+    });
+  
+   res.status(201).json(result);
 });
 
 module.exports = addOwnDrink;
+
 

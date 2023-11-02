@@ -16,6 +16,8 @@ const {
   validateBody,
   authenticate,
   isValidDrinkId,
+  upload,
+  parseJson
 } = require("../../middlewares");
 
 const { drinkJoiSchema } = require("../../models/cocktails");
@@ -35,6 +37,8 @@ router.get("/:drinkId", getDrinkById);
 router.post(
   "/own/add",
   authenticate,
+  upload.single("cocktail"),
+  parseJson,
   validateBody(drinkJoiSchema),
   addOwnDrink
 );
