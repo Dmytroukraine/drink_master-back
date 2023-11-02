@@ -9,7 +9,7 @@ const {
   removeFavorite,
   getByKeyWord,
   getFavorite,
-  getPopular
+  getPopular,
 } = require("../../controllers/drinks");
 
 const {
@@ -22,15 +22,12 @@ const { drinkJoiSchema } = require("../../models/cocktails");
 
 const router = express.Router();
 
-
-
 router.get("/own", authenticate, getOwnDrinks);
 router.get("/popular", authenticate, getPopular);
-router.get("/mainpage", getMainPageDrinks);
-router.get("/search", getByKeyWord);
+router.get("/mainpage", authenticate, getMainPageDrinks);
+router.get("/search", authenticate, getByKeyWord);
 router.get("/favorite", authenticate, getFavorite);
-router.get("/:drinkId", getDrinkById);
-
+router.get("/:drinkId", authenticate, getDrinkById);
 
 router.post(
   "/own/add",
@@ -46,11 +43,7 @@ router.delete(
   removeOwnDrink
 );
 
-router.get(
-  "/favorite",
-  authenticate,
-  getFavorite
-);
+router.get("/favorite", authenticate, getFavorite);
 
 router.post(
   "/favorite/add/:drinkId",
