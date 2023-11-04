@@ -3,9 +3,9 @@ const { ctrlWrapper, HttpError } = require("../../utils");
 
 const removeFavorite = ctrlWrapper(
   async (req, res, next) => {
-    const { drinkId } = req.params;
+    const { id } = req.params;
     const { id: userId } = req.user;
-    const result = await Drink.findByIdAndUpdate(drinkId, {
+    const result = await Drink.findByIdAndUpdate(id, {
       $pull: { users: userId },
     });
     if (!result) {
