@@ -2,8 +2,13 @@ const { sendEmail, updateUserNameAndAvatar } = require("../../helpers");
 
 const getCurrentUser = (req, res) => {
   res.status(200).json({
-    message: "Success",
-    user: req.user,
+    user: {
+      name: req.user.name,
+      email: req.user.email,
+      avatarURL: req.user.avatarURL,
+      birthDate: req.user.birthDate,
+    },
+    token: req.user.token,
   });
 };
 
