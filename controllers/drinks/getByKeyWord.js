@@ -11,18 +11,10 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
   const age = differenceInYears(currentDate, birthDate);
   const queryConfig = {};
 
-  if (category) {
-    queryConfig.category = category;
-  }
-  if (ingredient) {
-    queryConfig.ingredients = { $elemMatch: { title: ingredient } };
-  }
-  if (query) {
-    queryConfig.shortDescription = { $regex: query, $options: "i" };
-  }
-  if (age < 18) {
-    queryConfig.alcoholic = "Non alcoholic";
-  }
+  category && (queryConfig.category = category);
+  ingredient &&
+    (queryConfig.ingredients = { $elemMatch: { title: ingredient } });
+  query && (queryConfig.shortDescription = { $regex: query, $options: "i" });
 
   const total = await Drink.countDocuments(queryConfig);
 

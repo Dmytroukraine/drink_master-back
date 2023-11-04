@@ -34,11 +34,6 @@ const userSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-// userSchema.post("save", (error, data, next) => {
-//   error.status = 400;
-//   next();
-// });
-
 userSchema.post("save", handleMongooseError);
 
 const User = model("user", userSchema);

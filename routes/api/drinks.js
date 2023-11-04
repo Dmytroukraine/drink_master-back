@@ -17,7 +17,7 @@ const {
   authenticate,
   isValidDrinkId,
   upload,
-  parseJson
+  parseJson,
 } = require("../../middlewares");
 
 const { drinkJoiSchema } = require("../../models/cocktails");
@@ -29,7 +29,7 @@ router.get("/popular", authenticate, getPopular);
 router.get("/mainpage", authenticate, getMainPageDrinks);
 router.get("/search", authenticate, getByKeyWord);
 router.get("/favorite", authenticate, getFavorite);
-router.get("/:drinkId", authenticate, getDrinkById);
+router.get("/:id", authenticate, getDrinkById);
 
 router.post(
   "/own/add",
