@@ -2,8 +2,8 @@ const { ctrlWrapper, HttpError } = require("../../utils");
 const { Drink } = require("../../models/cocktails");
 
 const getDrinkById = ctrlWrapper(async (req, res) => {
-  const { drinkId } = req.params;
-  const drinkById = await Drink.findById(drinkId);
+  const { id } = req.params;
+  const drinkById = await Drink.findById(id);
 
   if (!drinkById) {
     throw HttpError(404, "Not Found");

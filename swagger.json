@@ -427,7 +427,7 @@
           }
         }
       },
-      "/api/drinks/{drinkId}": {
+      "/api/drinks/{id}": {
         "get": {
           "tags": ["Drinks"],
           "summary": "Get drink by id",
@@ -501,7 +501,7 @@
           }
         }
       },
-      "/api/drinks/own/remove/{drinkId}": {
+      "/api/drinks/own/remove/{id}": {
         "delete": {
           "tags": ["Drinks"],
           "summary": "Delete user's drink",
@@ -561,7 +561,7 @@
           }
         }
       },
-      "/api/drinks/favorite/add/{drinkId}": {
+      "/api/drinks/favorite/add/{id}": {
         "post": {
           "tags": ["Drinks"],
           "summary": "Add drink to user favorites",
@@ -599,7 +599,7 @@
           }
         }
       },
-      "/api/drinks/favorite/remove/{drinkId}": {
+      "/api/drinks/favorite/remove/{id}": {
         "delete": {
           "tags": ["Drinks"],
           "summary": "Remove drink from user favorites",
@@ -1647,7 +1647,7 @@
               "type": "string",
               "description": "Drink name"
             },
-            "description": {
+            "shortDescription": {
               "type": "string",
               "description": "Drink description"
             },
