@@ -15,12 +15,12 @@ const {
 const {
   validateBody,
   authenticate,
-  isValidDrinkId,
+  isValidId,
   upload,
   parseJson,
 } = require("../../middlewares");
 
-const { drinkJoiSchema } = require("../../models/cocktails");
+const drinkJoiSchema = require("../../schemas/drinkSchema");
 
 const router = express.Router();
 
@@ -41,25 +41,25 @@ router.post(
 );
 
 router.delete(
-  "/own/remove/:drinkId",
+  "/own/remove/:id",
   authenticate,
-  isValidDrinkId,
+  isValidId,
   removeOwnDrink
 );
 
 router.get("/favorite", authenticate, getFavorite);
 
 router.post(
-  "/favorite/add/:drinkId",
+  "/favorite/add/:id",
   authenticate,
-  isValidDrinkId,
+  isValidId,
   addFavorite
 );
 
 router.delete(
-  "/favorite/remove/:drinkId",
+  "/favorite/remove/:id",
   authenticate,
-  isValidDrinkId,
+  isValidId,
   removeFavorite
 );
 

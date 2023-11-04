@@ -1,12 +1,8 @@
 const { Schema, model } = require("mongoose");
-const Joi = require("joi");
-
-const category = require('../db/categories.json')
+const alco = require("../constants/alcoDrink");
+const category = require('../db/categories.json');
 const glass = require('../db/glasses.json');
 const { handleMongooseError } = require("../helpers");
-
-
-const alco = ["Alcoholic", "Non alcoholic"];
 
 const ingredientSchema = new Schema(
   {
@@ -31,7 +27,7 @@ const drinkSchema = new Schema(
     drink: {
       type: String,
       required: [true, "Set name for a drink"],
-      unique: [true, "Email in use"],
+      unique: [true, "Name in use"],
     },
     category: {
       type: String,
@@ -40,7 +36,7 @@ const drinkSchema = new Schema(
     },
     alcoholic: {
       type: String,
-      enum: ["Alcoholic", "Non alcoholic"],
+      enum: alco,
       required: [true, "Set type of drink"],
     },
     glass: {
@@ -66,20 +62,6 @@ const drinkSchema = new Schema(
 
     ingredients: [
       ingredientSchema
-      // {
-      //   title: {
-      //     type: String,
-      //     required: [true, "Set name for a ingredient"],
-      //   },
-      //   measure: {
-      //     type: String,
-      //     required: [true, "Set measure"],
-      //   },
-      //   ingredientId: {
-      //     type: Schema.Types.ObjectId,
-      //     ref: "ingredients",
-      //   },
-      // }
     ],
 
     owner: {
@@ -97,29 +79,7 @@ const drinkSchema = new Schema(
   { versionKey: false }
 );
 
-const drinkJoiSchema = Joi.object({
-  drink: Joi.string().min(2).max(30).required(),
-  category: Joi.string()
-    .valid(...category)
-    .required(),
-  alcoholic: Joi.string()
-    .valid("Alcoholic", "Non alcoholic")
-    .required(),
-  glass: Joi.string()
-    .valid(...glass)
-    .required(),
-  shortDescription: Joi.string().min(5).max(100).required(),
-  instructions: Joi.string().min(10).max(1000).required(),
-  drinkThumb: Joi.string(),
-  ingredients: Joi.array().items(
-    Joi.object({
-      title: Joi.string().required(),
-      measure: Joi.string().required(),
-      ingredientId: Joi.string().required(),
-    })
-  ),
-  users: Joi.array().items(Joi.object()),
-}).options({ abortEarly: false });
+
 
 drinkSchema.post("save", (error, data, next) => {
   const { name, code } = error;
@@ -137,4 +97,4 @@ drinkSchema.post("save", (error, data, next) => {
 
 const Drink = model("recipe", drinkSchema);
 
-module.exports = { Drink, drinkJoiSchema };
+module.exports = { Drink };

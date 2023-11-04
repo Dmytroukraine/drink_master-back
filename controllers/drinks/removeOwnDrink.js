@@ -3,22 +3,26 @@ const { ctrlWrapper, HttpError } = require("../../utils");
 
 const removeOwnDrink = ctrlWrapper(
   async (req, res, next) => {
-    const { drinkId } = req.params;
-    const { id } = req.user;
+    const { id } = req.params;
+    const { id: userId } = req.user;
 
-    const { owner } = await Drink.findById(drinkId);
-    if (!owner) {
+    const drink = await Drink.findById(id);
+    if (!drink) {
       throw HttpError(404, "Not found");
     }
-    const ownerId = owner.toString();
 
-    if (ownerId !== id) {
+    if (!drink.owner) {
       throw HttpError(403, "You are not the owner");
     }
+        const ownerStrId = drink.owner.toString();
+    
+        if (ownerStrId !== userId) {
+          throw HttpError(403, "You are not the owner");
+        }
 
-    const result = await Drink.findByIdAndDelete(drinkId);
+        const result = await Drink.findByIdAndDelete(id);
 
-    res.status(200).json({ message: "drink deleted" });
+        res.status(200).json({ message: "drink deleted" });
   }
 );
 

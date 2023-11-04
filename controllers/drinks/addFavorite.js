@@ -2,10 +2,10 @@ const { Drink } = require("../../models/cocktails");
 const { ctrlWrapper, HttpError } = require("../../utils");
 
 const addFavorite = ctrlWrapper(async (req, res, next) => {
-  const { drinkId } = req.params;
+  const { id } = req.params;
   const { id: userId } = req.user;
 
-  const result = await Drink.findById(drinkId);
+  const result = await Drink.findById(id);
 
   if (!result) {
     throw HttpError(404, "Not found");
@@ -17,7 +17,7 @@ const addFavorite = ctrlWrapper(async (req, res, next) => {
     });
     
   } else {
-    const drink = await Drink.findByIdAndUpdate(drinkId, {
+    const drink = await Drink.findByIdAndUpdate(id, {
       $push: { users: userId },
     });
     res.status(200).json({ message: "Drink is added to favorites" });

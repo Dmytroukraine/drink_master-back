@@ -1,5 +1,5 @@
 const authenticate = require("./authenticate");
-const isValidDrinkId = require("./isValidDrinkId");
+const isValidId = require("./isValidId");
 const validateBody = require("./validateBody");
 const upload = require("./upload");
 const parseJson = require("./parseJson");
@@ -7,7 +7,7 @@ const isEmailBelongsToUser = require("./isEmailBelongsToUser");
 
 module.exports = {
   authenticate,
-  isValidDrinkId,
+  isValidId,
   validateBody,
   upload,
   parseJson,
