@@ -26,7 +26,7 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
     throw HttpError(404, "No results found");
   }
 
-  res.json({ drinks, total });
+  res.json({ total, drinks });
 });
 
 module.exports = getByKeyWord;
