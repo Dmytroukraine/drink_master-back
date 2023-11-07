@@ -14,7 +14,11 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
   category && (queryConfig.category = category);
   ingredient &&
     (queryConfig.ingredients = { $elemMatch: { title: ingredient } });
-  query && (queryConfig.shortDescription = { $regex: query, $options: "i" });
+  query && (queryConfig.drink = { $regex: query, $options: "i" });
+
+  if (age < 18) {
+    queryConfig.alcoholic = "Non alcoholic";
+  }
 
   const total = await Drink.countDocuments(queryConfig);
 
