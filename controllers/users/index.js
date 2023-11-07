@@ -1,4 +1,5 @@
 const { sendEmail, updateUserNameAndAvatar } = require("../../helpers");
+const ctrlWrapper = require("../../utils/ctrlWrapper");
 
 const getCurrentUser = (req, res) => {
   res.status(200).json({
@@ -35,6 +36,6 @@ const updateUserData = async (req, res) => {
 
 module.exports = {
   getCurrentUser,
-  subscribe,
+  subscribe: ctrlWrapper(subscribe),
   updateUserData,
 };
