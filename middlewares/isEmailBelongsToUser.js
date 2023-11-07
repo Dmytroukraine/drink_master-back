@@ -1,5 +1,6 @@
 const User = require("../models/users");
 const { HttpError } = require("../utils");
+const ctrlWrapper = require("../utils/ctrlWrapper");
 
 const isEmailBelongsToUser = async (req, res, next) => {
   const email = req.body.email;
@@ -15,4 +16,4 @@ const isEmailBelongsToUser = async (req, res, next) => {
   next();
 };
 
-module.exports = isEmailBelongsToUser;
+module.exports = ctrlWrapper(isEmailBelongsToUser);
