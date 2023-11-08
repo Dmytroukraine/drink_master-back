@@ -3,7 +3,7 @@ const differenceInYears = require("date-fns/differenceInYears");
 const { Drink } = require("../../models/cocktails");
 
 const getByKeyWord = ctrlWrapper(async (req, res) => {
-  const { category, ingredient, query, page = 1, limit = 10 } = req.query;
+  const { category, ingredient, query, page, limit } = req.query;
   const { birthDate } = req.user;
 
   const skip = (page - 1) * limit;
@@ -12,6 +12,8 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
   const queryConfig = {};
 
   category && (queryConfig.category = category);
+  category && (queryConfig.page = page);
+  category && (queryConfig.limit = limit);
   ingredient &&
     (queryConfig.ingredients = { $elemMatch: { title: ingredient } });
   query && (queryConfig.drink = { $regex: query, $options: "i" });
