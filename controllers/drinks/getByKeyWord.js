@@ -3,7 +3,7 @@ const differenceInYears = require("date-fns/differenceInYears");
 const { Drink } = require("../../models/cocktails");
 
 const getByKeyWord = ctrlWrapper(async (req, res) => {
-  const { categories, ingredients, query, page, limit } = req.query;
+  const { category, ingredient, query, page, limit } = req.query;
   const { birthDate } = req.user;
 
   const skip = (page - 1) * limit;
@@ -11,12 +11,12 @@ const getByKeyWord = ctrlWrapper(async (req, res) => {
   const age = differenceInYears(currentDate, birthDate);
   const queryConfig = {};
 
-  categories && (queryConfig.categories = categories);
+  category && (queryConfig.category = category);
+  // page && (queryConfig.page = page);
+  // limit && (queryConfig.limit = limit);
+  ingredient &&
+    (queryConfig.ingredients = { $elemMatch: { title: ingredient } });
   query && (queryConfig.drink = { $regex: query, $options: "i" });
-  page && (queryConfig.page = page);
-  limit && (queryConfig.limit = limit);
-  ingredients &&
-    (queryConfig.ingredients = { $elemMatch: { title: ingredients } });
 
   if (age < 18) {
     queryConfig.alcoholic = "Non alcoholic";
